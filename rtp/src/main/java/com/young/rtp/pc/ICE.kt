@@ -1,4 +1,4 @@
 package com.young.rtp.pc
 
-class Ice {
+class ICE {
 }
