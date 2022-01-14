@@ -331,7 +331,7 @@ class RTCBluetoothManager private constructor(
                 RTPLog.d(TAG, "SCO connected with ${bluetoothDevice!!.name}")
                 scoConnected = true
             } else {
-                RTPLog.d(TAG, "SCO is not connted with ${bluetoothDevice!!.name}")
+                RTPLog.d(TAG, "SCO is not connected with ${bluetoothDevice!!.name}")
             }
         }
 
