@@ -17,10 +17,13 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import kr.young.rtp.util.RTPLog
 import com.young.util.Permission
 import com.young.util.TouchEffect
+import kr.young.restsignal.NoRestUrlException
+import kr.young.restsignal.RestSignalManager
 
 class MainActivity : AppCompatActivity(), View.OnClickListener, View.OnTouchListener {
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
+        RTPLog.i(TAG, "onCreate()")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         setSupportActionBar(findViewById(R.id.toolbar))
@@ -44,8 +47,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, View.OnTouchList
 
     override fun onResume() {
         super.onResume()
-        RTPLog.i(TAG, "onResume")
+        RTPLog.i(TAG, "onResume()")
         checkPermissions()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        RTPLog.i(TAG, "onDestroy()")
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -84,6 +92,23 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, View.OnTouchList
         return false
     }
 
+    private fun signIn() {
+        val manager = RestSignalManager.instance
+        try {
+            manager.test()
+        } catch (e: NoRestUrlException) {
+            e.printStackTrace()
+        }
+    }
+
+    private fun callRTCActivity() {
+
+    }
+
+    private fun callMessageActivity() {
+
+    }
+
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -106,28 +131,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, View.OnTouchList
         if (!Permission.check(this, arrayOf(
                 Manifest.permission.CAMERA,
                 Manifest.permission.MODIFY_AUDIO_SETTINGS,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.READ_EXTERNAL_STORAGE,
                 Manifest.permission.RECORD_AUDIO))) {
             Permission.request(this, arrayOf(
                 Manifest.permission.CAMERA,
                 Manifest.permission.MODIFY_AUDIO_SETTINGS,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.READ_EXTERNAL_STORAGE,
                 Manifest.permission.RECORD_AUDIO))
         }
-    }
-
-    private fun signIn() {
-
-    }
-
-    private fun callRTCActivity() {
-
-    }
-
-    private fun callMessageActivity() {
-
     }
 
     companion object {
