@@ -19,14 +19,20 @@ import com.young.util.Permission
 import com.young.util.TouchEffect
 import kr.young.restsignal.NoRestUrlException
 import kr.young.restsignal.RestSignalManager
+import kr.young.webrtc.Constants.Companion.REST_URL
+import kr.young.webrtc.Constants.Companion.SUB_URL
 
 class MainActivity : AppCompatActivity(), View.OnClickListener, View.OnTouchListener {
+    private val signalManager: RestSignalManager = RestSignalManager.instance
+
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         RTPLog.i(TAG, "onCreate()")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         setSupportActionBar(findViewById(R.id.toolbar))
+
+        signalManager.setBasicUrl(REST_URL, SUB_URL)
 
         //SIP component
         //rest component

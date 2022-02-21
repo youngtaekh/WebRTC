@@ -1,5 +1,18 @@
 package kr.young.restsignal
 
+import android.annotation.SuppressLint
+import io.reactivex.Observable
+import io.reactivex.rxkotlin.subscribeBy
+import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import kr.young.rtp.util.RTPLog
+import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.Executors
+
 class RestSignalManager private constructor() {
     private var restUrl: String? = null
     private var subUrl: String? = null
@@ -14,13 +27,15 @@ class RestSignalManager private constructor() {
     }
 
     private fun checkUrl(): Boolean {
-        return restUrl == null || subUrl == null
+        return restUrl.isNullOrEmpty()
     }
 
+    @SuppressLint("CheckResult")
     fun test() {
         if (checkUrl()) {
             throw NoRestUrlException()
         }
+        ThreadTest.restCall(restUrl!!, subUrl)
     }
 
     companion object {
