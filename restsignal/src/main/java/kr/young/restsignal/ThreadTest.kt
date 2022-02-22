@@ -8,7 +8,7 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import kr.young.rtp.util.RTPLog
+import kr.young.util.DebugLog
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -22,9 +22,9 @@ class ThreadTest {
         fun coroutineTest() = runBlocking {
             val job = launch {
                 delay(1000)
-                RTPLog.i(TAG, "launch")
+                DebugLog.i(TAG, "launch")
             }
-            RTPLog.i(TAG, "runBlocking")
+            DebugLog.i(TAG, "runBlocking")
 
             job.join()
         }
@@ -34,17 +34,17 @@ class ThreadTest {
         fun rxTest() {
             val ob = Observable.just(1)
             ob.subscribeOn(Schedulers.io())
-                .subscribe { RTPLog.i(TAG, "Schedulers.io()-${Thread.currentThread().name}") }
+                .subscribe { DebugLog.i(TAG, "Schedulers.io()-${Thread.currentThread().name}") }
             ob.subscribeOn(Schedulers.computation())
-                .subscribe { RTPLog.i(TAG, "Schedulers.computation()-${Thread.currentThread().name}") }
+                .subscribe { DebugLog.i(TAG, "Schedulers.computation()-${Thread.currentThread().name}") }
             ob.subscribeOn(Schedulers.newThread())
-                .subscribe { RTPLog.i(TAG, "Schedulers.newThread()-${Thread.currentThread().name}") }
+                .subscribe { DebugLog.i(TAG, "Schedulers.newThread()-${Thread.currentThread().name}") }
             ob.subscribeOn(Schedulers.single())
-                .subscribe { RTPLog.i(TAG, "Schedulers.single()-${Thread.currentThread().name}") }
+                .subscribe { DebugLog.i(TAG, "Schedulers.single()-${Thread.currentThread().name}") }
             ob.subscribeOn(Schedulers.trampoline())
-                .subscribe { RTPLog.i(TAG, "Schedulers.trampoline()-${Thread.currentThread().name}") }
+                .subscribe { DebugLog.i(TAG, "Schedulers.trampoline()-${Thread.currentThread().name}") }
             ob.subscribeOn(AndroidSchedulers.mainThread())
-                .subscribe { RTPLog.i(TAG, "AndroidSchedulers.mainThread()-${Thread.currentThread().name}") }
+                .subscribe { DebugLog.i(TAG, "AndroidSchedulers.mainThread()-${Thread.currentThread().name}") }
 
             val executor = Executors.newFixedThreadPool(2)
             val customScheduler = Schedulers.from(executor)
@@ -58,7 +58,7 @@ class ThreadTest {
             val ob = Observable.just(3)
             ob.subscribeOn(Schedulers.computation())
                 .subscribe {
-                    RTPLog.i(TAG, "Schedulers.io()-${Thread.currentThread().name}")
+                    DebugLog.i(TAG, "Schedulers.io()-${Thread.currentThread().name}")
                     val retrofit = Retrofit.Builder()
                         .baseUrl(restUrl + subUrl)
                         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -66,11 +66,11 @@ class ThreadTest {
                         .build()
                     val service = retrofit.create(RestUserService::class.java)
                     service.getUsers()
-                        .doOnError { RTPLog.i(TAG, "0${it.message!!}") }
+                        .doOnError { DebugLog.i(TAG, "0${it.message!!}") }
                         .subscribeBy(
                             onNext = {
                                 it.checkType()
-//                            RTPLog.i(TAG, response.toString())
+//                            DebugLog.i(TAG, response.toString())
                             },
                             onError = { it.printStackTrace() }
                         )

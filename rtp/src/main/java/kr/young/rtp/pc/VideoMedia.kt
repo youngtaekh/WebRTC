@@ -9,7 +9,7 @@ import kr.young.rtp.util.DefaultValues
 import kr.young.rtp.util.DefaultValues.Companion.videoFPS
 import kr.young.rtp.util.DefaultValues.Companion.videoHeight
 import kr.young.rtp.util.DefaultValues.Companion.videoWidth
-import kr.young.rtp.util.RTPLog
+import kr.young.util.DebugLog
 import org.webrtc.*
 
 class VideoMedia {
@@ -40,14 +40,14 @@ class VideoMedia {
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private fun createScreenCapturer(data: Intent?): VideoCapturer? {
         return if (data==null) {
-            RTPLog.e(TAG, "User didn't give permission to capture the screen.")
+            DebugLog.e(TAG, "User didn't give permission to capture the screen.")
             null
         } else {
             ScreenCapturerAndroid(
                 data,
                 object : MediaProjection.Callback() {
                     override fun onStop() {
-                        RTPLog.e(TAG, "User revoked permission to capture the screen.")
+                        DebugLog.e(TAG, "User revoked permission to capture the screen.")
                     }
                 })
         }
@@ -122,7 +122,7 @@ class VideoMedia {
     }
 
     fun release() {
-        RTPLog.d(TAG, "dispose videoCapturer.")
+        DebugLog.d(TAG, "dispose videoCapturer.")
         try {
             videoCapturer?.stopCapture()
         } catch (e: InterruptedException) {
@@ -131,10 +131,10 @@ class VideoMedia {
         videoCapturerStopped = true
         videoCapturer?.dispose()
         videoCapturer = null
-        RTPLog.d(TAG, "dispose video source.")
+        DebugLog.d(TAG, "dispose video source.")
         videoSource?.dispose()
         videoSource = null
-        RTPLog.d(TAG, "dispose surfaceTextureHelper.")
+        DebugLog.d(TAG, "dispose surfaceTextureHelper.")
         surfaceTextureHelper?.dispose()
         surfaceTextureHelper = null
     }
@@ -153,7 +153,7 @@ class VideoMedia {
 
     fun stopVideoSource() {
         if (!videoCapturerStopped) {
-            RTPLog.d(TAG, "Stop video source.")
+            DebugLog.d(TAG, "Stop video source.")
             try {
                 videoCapturer?.stopCapture()
             } catch (e: InterruptedException) {
@@ -164,14 +164,14 @@ class VideoMedia {
 
     fun startVideoSource() {
         if (videoCapturerStopped) {
-            RTPLog.d(TAG, "Restart video source.")
+            DebugLog.d(TAG, "Restart video source.")
             videoCapturer?.startCapture(videoWidth, videoHeight, videoFPS)
             videoCapturerStopped = false
         }
     }
 
     fun changeCaptureFormat(width: Int, height: Int, fps: Int) {
-        RTPLog.i(TAG, "captureFormatChange(width $width, height $height, fps $fps)")
+        DebugLog.i(TAG, "captureFormatChange(width $width, height $height, fps $fps)")
         videoSource?.adaptOutputFormat(width, height, fps)
     }
 

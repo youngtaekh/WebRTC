@@ -3,7 +3,7 @@ package kr.young.webrtc
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceFragmentCompat
-import kr.young.rtp.util.RTPLog
+import kr.young.util.DebugLog
 
 class SettingsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,7 +26,7 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        RTPLog.i(TAG, "onSupportNavigateUp")
+        DebugLog.i(TAG, "onSupportNavigateUp")
         return super.onSupportNavigateUp()
     }
 

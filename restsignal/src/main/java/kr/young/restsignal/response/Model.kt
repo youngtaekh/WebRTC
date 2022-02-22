@@ -1,35 +1,34 @@
 package kr.young.restsignal.response
 
-import kr.young.rtp.util.RTPLog
-import kotlin.reflect.typeOf
+import kr.young.util.DebugLog
 
 class Model<T> (val header: Header, val body: T) {
 
     init {
         if (body is List<*>) {
-            RTPLog.i(TAG, "body is List")
+            DebugLog.i(TAG, "body is List")
         } else if (body is UserModel) {
-            RTPLog.i(TAG, "body is UserModel")
+            DebugLog.i(TAG, "body is UserModel")
         }
     }
 
     fun checkType() {
-        RTPLog.i(TAG, "checkType()")
+        DebugLog.i(TAG, "checkType()")
         when (body) {
             is List<*> -> {
-                RTPLog.i(TAG, "body is List")
+                DebugLog.i(TAG, "body is List")
             }
             is UserModel -> {
-                RTPLog.i(TAG, "body is UserModel")
+                DebugLog.i(TAG, "body is UserModel")
             }
             else -> {
-                RTPLog.i(TAG, body!!::class.toString())
+                DebugLog.i(TAG, body!!::class.toString())
             }
         }
     }
 
     override fun toString(): String {
-        RTPLog.i(TAG, "response.Model")
+        DebugLog.i(TAG, "response.Model")
         return "Response(${header}, body = ${body})"
     }
 

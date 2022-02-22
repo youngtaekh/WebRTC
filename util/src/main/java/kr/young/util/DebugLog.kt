@@ -1,12 +1,11 @@
-package kr.young.rtp.util
+package kr.young.util
 
 import android.util.Log
-import kr.young.rtp.BuildConfig
 
-class RTPLog {
+class DebugLog {
     companion object {
         @JvmStatic var isModuleTag = false
-        private const val MODULE_TAG = "RTP"
+        private const val MODULE_TAG = "DebugLog"
         @JvmStatic fun v(tag: String, message:String) {
             if (BuildConfig.DEBUG) {
                 if (isModuleTag) {

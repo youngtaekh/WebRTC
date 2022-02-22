@@ -2,9 +2,8 @@ package kr.young.rtp
 
 import kr.young.rtp.pc.VideoMedia
 import kr.young.rtp.util.DefaultValues
-import kr.young.rtp.util.RTPLog
+import kr.young.util.DebugLog
 import org.webrtc.StatsReport
-import java.util.*
 
 class StatParser {
     private var displayHud = false
@@ -36,16 +35,16 @@ class StatParser {
     fun updateEncoderStatistics(reports: Array<StatsReport?>, isVideo: Boolean) {
         if (test) {
             for ((index, report) in reports.withIndex()) {
-                RTPLog.i(TAG, "index $index")
-                RTPLog.i(TAG, "report.id ${report?.id}")
-                RTPLog.i(TAG, "report.type ${report?.type}")
-                RTPLog.i(TAG, "report.timestamp ${report?.timestamp}")
-                RTPLog.i(TAG, "report.values====================")
+                DebugLog.i(TAG, "index $index")
+                DebugLog.i(TAG, "report.id ${report?.id}")
+                DebugLog.i(TAG, "report.type ${report?.type}")
+                DebugLog.i(TAG, "report.timestamp ${report?.timestamp}")
+                DebugLog.i(TAG, "report.values====================")
                 for ((index2, value) in report!!.values.withIndex()) {
-                    RTPLog.i(TAG, "\tindex2 $index2")
-                    RTPLog.i(TAG, "\tvalue.name ${value.name}")
-                    RTPLog.i(TAG, "\tvalue.value ${value.value}")
-                    RTPLog.i(TAG, "=============================")
+                    DebugLog.i(TAG, "\tindex2 $index2")
+                    DebugLog.i(TAG, "\tvalue.name ${value.name}")
+                    DebugLog.i(TAG, "\tvalue.value ${value.value}")
+                    DebugLog.i(TAG, "=============================")
                 }
             }
             return
@@ -128,10 +127,10 @@ class StatParser {
                 }
             }
         }
-        RTPLog.i(TAG, "Bwe $bweStat")
-        RTPLog.i(TAG, "Connection $connectionStat")
-//        P2PLog.i(TAG, "Video Send $videoSendStat")
-//        P2PLog.i(TAG, "Video Receive $videoRecvStat")
+        DebugLog.i(TAG, "Bwe $bweStat")
+        DebugLog.i(TAG, "Connection $connectionStat")
+//        DebugLog.i(TAG, "Video Send $videoSendStat")
+//        DebugLog.i(TAG, "Video Receive $videoRecvStat")
         if (isVideo) {
             if (fps != null) {
                 encoderStat.append("Fps:  ").append(fps).append("\n")
@@ -143,7 +142,7 @@ class StatParser {
                 encoderStat.append("Actual BR: ").append(actualBitrate).append("\n")
             }
         }
-        RTPLog.i(TAG, "Encoder stat $encoderStat")
+        DebugLog.i(TAG, "Encoder stat $encoderStat")
     }
 
     companion object {

@@ -1,6 +1,7 @@
 package kr.young.rtp.util
 
 import android.os.Build
+import kr.young.util.DebugLog
 import java.lang.AssertionError
 
 class RTCUtils private constructor() {
@@ -19,7 +20,7 @@ class RTCUtils private constructor() {
 
         @JvmStatic
         fun logDeviceInfo(tag: String) {
-            RTPLog.d(tag, "Android SDK: ${Build.VERSION.SDK_INT}, " +
+            DebugLog.d(tag, "Android SDK: ${Build.VERSION.SDK_INT}, " +
                     "Release: ${Build.VERSION.RELEASE}, " +
                     "Brand: ${Build.BRAND}, " +
                     "Device: ${Build.DEVICE}, " +

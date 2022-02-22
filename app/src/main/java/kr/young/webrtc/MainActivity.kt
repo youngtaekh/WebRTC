@@ -4,7 +4,6 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -13,12 +12,13 @@ import android.view.View
 import android.view.View.VISIBLE
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
-import kr.young.rtp.util.RTPLog
 import com.young.util.Permission
 import com.young.util.TouchEffect
 import kr.young.restsignal.NoRestUrlException
 import kr.young.restsignal.RestSignalManager
+import kr.young.util.DebugLog
 import kr.young.webrtc.Constants.Companion.REST_URL
 import kr.young.webrtc.Constants.Companion.SUB_URL
 
@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, View.OnTouchList
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
-        RTPLog.i(TAG, "onCreate()")
+        DebugLog.i(TAG, "onCreate()")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         setSupportActionBar(findViewById(R.id.toolbar))
@@ -53,13 +53,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, View.OnTouchList
 
     override fun onResume() {
         super.onResume()
-        RTPLog.i(TAG, "onResume()")
+        DebugLog.i(TAG, "onResume()")
         checkPermissions()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        RTPLog.i(TAG, "onDestroy()")
+        DebugLog.i(TAG, "onDestroy()")
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -129,7 +129,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, View.OnTouchList
                     break
                 }
             }
-            RTPLog.i(TAG, "permission: $hasPermission")
+            DebugLog.i(TAG, "permission: $hasPermission")
         }
     }
 

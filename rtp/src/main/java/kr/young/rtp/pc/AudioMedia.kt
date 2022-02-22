@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.Log
 import kr.young.rtp.RecordedAudioToFileController
 import kr.young.rtp.util.DefaultValues
-import kr.young.rtp.util.RTPLog
+import kr.young.util.DebugLog
 import org.webrtc.AudioSource
 import org.webrtc.AudioTrack
 import org.webrtc.MediaConstraints
@@ -52,7 +52,7 @@ class AudioMedia {
     }
 
     fun release() {
-        RTPLog.i(TAG, "Closing audio source.")
+        DebugLog.i(TAG, "Closing audio source.")
         audioSource?.dispose()
         audioSource = null
     }
