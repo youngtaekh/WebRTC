@@ -1,8 +1,7 @@
 package kr.young.rtp.util
 
 import android.os.Build
-import kr.young.util.DebugLog
-import java.lang.AssertionError
+import kr.young.common.DebugLog
 
 class RTCUtils private constructor() {
     companion object {

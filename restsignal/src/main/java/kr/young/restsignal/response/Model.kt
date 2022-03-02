@@ -1,6 +1,6 @@
 package kr.young.restsignal.response
 
-import kr.young.util.DebugLog
+import kr.young.common.DebugLog
 
 class Model<T> (val header: Header, val body: T) {
 

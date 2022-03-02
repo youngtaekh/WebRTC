@@ -5,11 +5,11 @@ import android.content.Context
 import android.content.Intent
 import android.media.projection.MediaProjection
 import android.os.Build
+import kr.young.common.DebugLog
 import kr.young.rtp.util.DefaultValues
 import kr.young.rtp.util.DefaultValues.Companion.videoFPS
 import kr.young.rtp.util.DefaultValues.Companion.videoHeight
 import kr.young.rtp.util.DefaultValues.Companion.videoWidth
-import kr.young.util.DebugLog
 import org.webrtc.*
 
 class VideoMedia {

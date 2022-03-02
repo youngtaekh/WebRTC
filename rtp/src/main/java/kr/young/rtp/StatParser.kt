@@ -1,8 +1,8 @@
 package kr.young.rtp
 
+import kr.young.common.DebugLog
 import kr.young.rtp.pc.VideoMedia
 import kr.young.rtp.util.DefaultValues
-import kr.young.util.DebugLog
 import org.webrtc.StatsReport
 
 class StatParser {

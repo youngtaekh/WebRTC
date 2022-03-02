@@ -10,4 +10,3 @@ rootProject.name = "WebRTC"
 include ':app'
 include ':rtp'
 include ':restsignal'
-include ':util'

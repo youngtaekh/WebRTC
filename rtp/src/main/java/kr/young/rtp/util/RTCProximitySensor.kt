@@ -5,7 +5,7 @@ import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
-import kr.young.util.DebugLog
+import kr.young.common.DebugLog
 import org.webrtc.ThreadUtils
 
 class RTCProximitySensor private constructor(

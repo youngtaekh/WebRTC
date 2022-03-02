@@ -3,7 +3,7 @@ package kr.young.webrtc
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceFragmentCompat
-import kr.young.util.DebugLog
+import kr.young.common.DebugLog
 
 class SettingsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

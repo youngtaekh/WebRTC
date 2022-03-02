@@ -34,7 +34,7 @@ android {
         main {
             manifest.srcFile "src/main/AndroidManifest.xml"
             java.srcDirs = [
-                    "src/main/java", "../../young/src"
+                    "src/main/java"
             ]
             res.srcDirs = [
                     "src/main/res", "../../young/res"
@@ -44,7 +44,6 @@ android {
 }
 
 dependencies {
-    implementation project(":util")
     implementation project(":rtp")
     implementation project(":restsignal")
     implementation 'androidx.core:core-ktx:1.7.0'
@@ -52,6 +51,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.5.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
     implementation 'androidx.preference:preference-ktx:1.2.0'
+    implementation 'io.github.youngtaekh:android-util:0.1.0'
     implementation 'org.webrtc:google-webrtc:1.0.32006'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

@@ -14,11 +14,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.young.util.Permission
-import com.young.util.TouchEffect
+import kr.young.common.DebugLog
+import kr.young.common.PermissionUtil
+import kr.young.common.TouchEffect
 import kr.young.restsignal.NoRestUrlException
 import kr.young.restsignal.RestSignalManager
-import kr.young.util.DebugLog
 import kr.young.webrtc.Constants.Companion.REST_URL
 import kr.young.webrtc.Constants.Companion.SUB_URL
 
@@ -91,9 +91,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, View.OnTouchList
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouch(v: View?, event: MotionEvent?): Boolean {
         when (v?.id) {
-            R.id.tv_sign_in -> TouchEffect().tv(v, event)
-            R.id.iv_rest_call -> TouchEffect().iv(v, event)
-            R.id.iv_rest_message -> TouchEffect().iv(v, event)
+            R.id.tv_sign_in -> TouchEffect.tv(v!!, event)
+            R.id.iv_rest_call -> TouchEffect.iv(v!!, event)
+            R.id.iv_rest_message -> TouchEffect.iv(v!!, event)
         }
         return false
     }
@@ -121,7 +121,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, View.OnTouchList
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == Permission.REQUEST_CODE && grantResults.isNotEmpty()) {
+        if (requestCode == PermissionUtil.REQUEST_CODE && grantResults.isNotEmpty()) {
             var hasPermission = true
             for (result in grantResults) {
                 if (result != PackageManager.PERMISSION_GRANTED) {
@@ -134,12 +134,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, View.OnTouchList
     }
 
     private fun checkPermissions() {
-        if (!Permission.check(this, arrayOf(
+        if (!PermissionUtil.check(this, arrayOf(
                 Manifest.permission.CAMERA,
                 Manifest.permission.MODIFY_AUDIO_SETTINGS,
                 Manifest.permission.READ_EXTERNAL_STORAGE,
                 Manifest.permission.RECORD_AUDIO))) {
-            Permission.request(this, arrayOf(
+            PermissionUtil.request(this, arrayOf(
                 Manifest.permission.CAMERA,
                 Manifest.permission.MODIFY_AUDIO_SETTINGS,
                 Manifest.permission.READ_EXTERNAL_STORAGE,

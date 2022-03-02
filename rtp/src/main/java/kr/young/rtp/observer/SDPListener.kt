@@ -1,6 +1,6 @@
 package kr.young.rtp.observer
 
-import kr.young.util.DebugLog
+import kr.young.common.DebugLog
 import org.webrtc.IceCandidate
 import org.webrtc.PeerConnection
 import org.webrtc.SdpObserver

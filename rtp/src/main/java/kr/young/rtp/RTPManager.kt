@@ -2,6 +2,7 @@ package kr.young.rtp
 
 import android.content.Context
 import android.content.Intent
+import kr.young.common.DebugLog
 import kr.young.rtp.observer.PCObserver
 import kr.young.rtp.observer.PCObserverImpl
 import kr.young.rtp.pc.*
@@ -12,7 +13,6 @@ import kr.young.rtp.util.DefaultValues.Companion.videoHeight
 import kr.young.rtp.util.DefaultValues.Companion.videoWidth
 import kr.young.rtp.util.PCState
 import kr.young.rtp.util.RTCAudioManager
-import kr.young.util.DebugLog
 import org.webrtc.*
 import java.io.IOException
 import java.util.concurrent.ExecutorService

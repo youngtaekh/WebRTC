@@ -2,6 +2,7 @@ package kr.young.rtp.pc
 
 import android.content.Context
 import android.util.Log
+import kr.young.common.DebugLog
 import kr.young.rtp.RecordedAudioToFileController
 import kr.young.rtp.observer.PCListener
 import kr.young.rtp.observer.PCObserverImpl
@@ -10,7 +11,6 @@ import kr.young.rtp.util.DefaultValues
 import kr.young.rtp.util.DefaultValues.Companion.videoFPS
 import kr.young.rtp.util.DefaultValues.Companion.videoHeight
 import kr.young.rtp.util.DefaultValues.Companion.videoWidth
-import kr.young.util.DebugLog
 import org.webrtc.*
 import java.nio.ByteBuffer
 import java.util.*

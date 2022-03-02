@@ -1,7 +1,7 @@
 package kr.young.rtp.observer
 
+import kr.young.common.DebugLog
 import kr.young.rtp.observer.PCObserverImpl.Companion.instance
-import kr.young.util.DebugLog
 import org.webrtc.*
 import java.nio.charset.Charset
 import java.util.concurrent.ExecutorService
